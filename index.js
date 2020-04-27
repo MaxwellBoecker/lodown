@@ -52,7 +52,10 @@ module.exports.typeOf = typeOf;
  * @param {number} number: The number which specifies how many elements to extract
  * 
  * @return{simple data type}{array} returns a simple data type if only returning one item. Returns an array
- * of elements if more than one item is returned
+ * of elements if more than one item is returned. Edge Cases include: If no number is given or the given argument
+ * for number is not a number, we return the first element in the array; if the given number exceeds the total indexes
+ * in the array we return the full array; if the argument for array is not given or if it is not an array we return
+ * an empty array.
  * 
  */
  
@@ -83,7 +86,10 @@ module.exports.first = first;
  * @param {number} number: The number of elements to extract
  * 
  * @return {simple data type}{array} Returns a simple data type if returning only one element, otherwise
- * returns an array of elements
+ * returns an array of elements. Edge Cases include: If the number given is greater than the total indexes in the array
+ * then we return the full array. If no number is given, or the argument given for the number parameter
+ * is not a number, we return the last element in the array. If no array is given 
+ * or the value given for array is not an array, we return an empty array.
  * 
  */
  
@@ -111,10 +117,12 @@ module.exports.last = last;
  * 
  * @param {array} array: The array in which we'll be searching for the given value
  * 
- * @param {simple data type} value: The function is built to handle finding any simple data type
+ * @param {any data type} value: The function is built to handle finding any data type. for simple data types it will compare the value.
+ * For complex it will compare the reference number.
  * 
  * @return {number} If value has successfully been located in array then the index of location is returned.
- * Otherwise if the value has not been located the value -1 is returned
+ * Otherwise if the value has not been located the value -1 is returned.
+ * 
  * 
  */
  
@@ -275,7 +283,7 @@ module.exports.map = map
  * 
  * @param {array} array: an array of objects
  * 
- * @param {property} prop: the key at which we will find the values that map needs to put in the returned array
+ * @param {string} prop: the key at which we will find the values that map needs to put in the returned array
  * 
  * @return {array} array: map returns an array of values acording to its own hard-coding, the helper function
  * modifies the first parameter
